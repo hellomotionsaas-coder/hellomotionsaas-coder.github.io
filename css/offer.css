@@ -1,0 +1,44 @@
+/* MotionSaas — 15% offer popup (dark panel, like the plugin in dark mode). Used on every page. */
+.offer{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px}
+.offer[hidden]{display:none}
+.offer__backdrop{position:absolute;inset:0;background:rgba(5,6,10,.55);-webkit-backdrop-filter:blur(12px) saturate(120%);backdrop-filter:blur(12px) saturate(120%);opacity:0;transition:opacity .45s ease}
+.offer.is-open .offer__backdrop{opacity:1}
+.offer__card{position:relative;width:min(100%,380px);border-radius:26px;padding:34px 28px 26px;text-align:center;color:#f2f2f4;
+  background:linear-gradient(160deg,#2a2a2d 0%,#1d1d1f 45%,#161618 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09),inset 0 0 0 1px rgba(255,255,255,.06),0 40px 100px -30px rgba(0,0,0,.8),0 0 70px -20px rgba(10,132,255,.45);
+  opacity:0;transform:translateY(18px) scale(.97);transition:opacity .45s cubic-bezier(.2,.75,.2,1),transform .55s cubic-bezier(.2,.75,.2,1)}
+.offer.is-open .offer__card{opacity:1;transform:none}
+.offer__x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:10px;border:0;background:rgba(255,255,255,.06);color:#c7c7cc;display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s}
+.offer__x:hover{background:rgba(255,255,255,.12);color:#fff}
+.offer__x svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.offer__head{display:flex;align-items:center;gap:12px;padding:12px 56px 12px 12px;border-radius:18px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.offer__app{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:12px;background:#2c2c30;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.offer__brand{font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.offer__brand b{color:#2997ff}
+.offer__tag{font-size:12px;color:#8e8e93;margin-top:2px}
+.offer__pct{margin-left:auto;font-size:12px;font-weight:700;color:#fff;padding:5px 10px;border-radius:999px;background:linear-gradient(180deg,#2a8dff,#0a6cf0);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 16px -6px rgba(10,108,240,.8)}
+.offer__step{padding:0}
+.offer__big{font-size:64px;font-weight:800;letter-spacing:-.05em;line-height:1;color:#fff}
+.offer__big span{background:linear-gradient(180deg,#5ab0ff,#0a84ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.offer__cat{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:#d1d1d6;margin-bottom:12px}
+.offer__cat::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.08)}
+.offer__cat i{width:20px;height:20px;border-radius:6px;background:linear-gradient(180deg,#2a8dff,#0a6cf0);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.offer h2{font-size:28px;letter-spacing:-.03em;line-height:1.1}
+.offer__sub{margin:12px auto 0;max-width:30ch;font-size:15px;color:#a1a1a8;line-height:1.5}
+.offer__form{margin-top:20px;display:grid;gap:10px}
+.offer__input{width:100%;height:50px;padding:0 16px;border-radius:14px;border:0;background:#121214;color:#fff;font:500 16px var(--font);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:box-shadow .2s}
+.offer__input::placeholder{color:#6e6e76}
+.offer__input:focus{outline:0;box-shadow:inset 0 0 0 1px #0a84ff,0 0 0 4px rgba(10,132,255,.2)}
+.offer__btn{display:flex;align-items:center;justify-content:center;height:50px;border-radius:14px;border:0;cursor:pointer;font:700 16px var(--font);color:#fff;
+  background:linear-gradient(180deg,#2a8dff,#0a6cf0);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 26px -10px rgba(10,108,240,.9);transition:transform .15s ease,box-shadow .2s ease,opacity .2s}
+.offer__btn:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 14px 30px -10px rgba(10,108,240,1)}
+.offer__btn[disabled]{opacity:.6;cursor:default;transform:none}
+.offer__btn--wide{margin-top:16px}
+.offer__err{margin-top:10px;font-size:13px;color:#ff6b6b}
+.offer__fine{margin-top:12px;font-size:12px;color:#6e6e76;text-align:center}
+.offer__code{margin-top:20px;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 18px;border-radius:14px;background:#121214;box-shadow:inset 0 0 0 1px rgba(10,132,255,.45),0 0 30px -12px rgba(10,132,255,.7)}
+.offer__code code{flex:1;font:800 22px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;color:#fff}
+.offer__copy{height:38px;padding:0 16px;border-radius:10px;border:0;cursor:pointer;font:600 14px var(--font);color:#fff;background:rgba(255,255,255,.08);transition:background .2s}
+.offer__copy:hover{background:rgba(255,255,255,.14)}
+html.offer-open,html.offer-open body{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.offer__card,.offer__backdrop{transition:none}}

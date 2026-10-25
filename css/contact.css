@@ -1,0 +1,46 @@
+/* MotionSaas — Contact page */
+.contact{padding-bottom:96px}
+.contact__head{padding:72px 0 40px;text-align:center}
+.contact__head h1{font-size:clamp(40px,5.6vw,64px);letter-spacing:-.04em}
+.contact__head p{margin:16px auto 0;max-width:46ch;font-size:clamp(16px,1.4vw,19px);color:var(--ink-2)}
+
+.channels{display:grid;gap:12px}
+.channel{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:18px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line),0 1px 2px rgba(0,0,0,.03);
+  transition:box-shadow .25s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
+.channel:hover{transform:translateY(-1px);box-shadow:inset 0 0 0 1px rgba(10,132,255,.35),0 12px 30px -16px rgba(10,108,240,.45)}
+.channel__ic{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:14px;color:#fff}
+.channel__ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.channel__ic svg .dot{fill:currentColor;stroke:none}
+.channel__ic--ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 95%)}
+.channel__ic--mail{background:linear-gradient(180deg,#2a8dff,#0a6cf0)}
+.channel__txt{display:flex;flex-direction:column;min-width:0;flex:1}
+.channel__label{font-size:12px;font-weight:600;color:var(--muted)}
+.channel__txt strong{font-size:17px;letter-spacing:-.01em;overflow-wrap:anywhere}
+.channel__hint{font-size:13.5px;color:var(--ink-2)}
+.channel__go{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--bg);color:var(--ink-2);transition:background .2s,color .2s}
+.channel__go svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.channel:hover .channel__go{background:rgba(10,132,255,.12);color:var(--blue-2)}
+
+.contact__or{display:flex;align-items:center;gap:14px;margin:36px 0 20px;font-size:13px;color:var(--muted)}
+.contact__or::before,.contact__or::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.cbox{display:grid;gap:16px;padding:26px;border-radius:22px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line),0 1px 2px rgba(0,0,0,.03)}
+.cbox__row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cbox__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.cf{display:grid;gap:7px}
+.cf span{font-size:13px;font-weight:600;color:var(--ink-2)}
+.cf input,.cf select,.cf textarea{width:100%;font:16px/1.4 var(--font);color:var(--ink);background:var(--bg);border:0;border-radius:12px;padding:12px 14px;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s;-webkit-appearance:none;appearance:none}
+.cf select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236e6e73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:40px}
+.cf textarea{resize:vertical;min-height:140px}
+.cf input:focus,.cf select:focus,.cf textarea:focus{outline:0;box-shadow:inset 0 0 0 1px var(--blue),0 0 0 4px rgba(10,132,255,.15)}
+.cbox__note{font-size:13px;color:var(--muted)}
+.cbox__note a{color:var(--blue)}
+.cbox .btn{justify-self:start}
+
+@media (max-width:720px){
+  .contact__head{padding:48px 0 28px}
+  .cbox{padding:20px}
+  .cbox__row{grid-template-columns:1fr}
+  .cbox .btn{justify-self:stretch}
+  .channel{padding:14px}
+}
