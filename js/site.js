@@ -2,6 +2,18 @@
 (function () {
   'use strict';
 
+  // Clickjacking guard: another site may not show these pages inside its own frame (GitHub Pages can't send
+  // the frame-ancestors header). Frames from this same site, like the Studio demo, are fine.
+  if (window.top !== window.self) {
+    var sameSite = false;
+    try { sameSite = window.top.location.origin === window.location.origin; } catch (e) {}
+    if (!sameSite) {
+      document.documentElement.style.display = 'none';
+      try { window.top.location = window.location.href; } catch (e) {}
+      return;
+    }
+  }
+
   var STORE = window.VFX_STORE || { name: 'MotionSaas', currency: 'USD' };
   var PRODUCTS = window.VFX_PRODUCTS || [];
   var CART_KEY = 'ms-cart-v1';

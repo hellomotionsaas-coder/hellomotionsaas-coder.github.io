@@ -1,5 +1,9 @@
 <!DOCTYPE html><html lang="en" class=""><head>
   <meta charset="utf-8">
+  <!-- security: scripts/site-csp.js -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-dFqnkix/KyuQ/tR3B/FYwRtcbWXrtRW7VdscV/VFsmc='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self' data:; connect-src 'self'; worker-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- /security -->
   <script>document.documentElement.classList.remove('no-js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>MotionSaas — One-click SaaS animations for After Effects</title>
@@ -19,18 +23,35 @@
   <meta name="twitter:image" content="https://hellomotionsaas-coder.github.io/images/studio-easing.png">
   <meta property="og:url" content="https://hellomotionsaas-coder.github.io/">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/site.css?v=202610290054">
-  <link rel="stylesheet" href="css/saasfx.css?v=202610290054">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MotionSaas",
+    "description": "After Effects extension for SaaS video editors: 100+ one-click presets for text, easing, transitions, carousels, glass and cursors.",
+    "applicationCategory": "DesignApplication",
+    "applicationSubCategory": "Adobe After Effects extension",
+    "operatingSystem": "macOS, Windows",
+    "softwareRequirements": "Adobe After Effects 2020 or later",
+    "softwareVersion": "1.0",
+    "url": "https://hellomotionsaas-coder.github.io/",
+    "downloadUrl": "https://hellomotionsaas-coder.github.io/MotionSaaS.zip",
+    "screenshot": "https://hellomotionsaas-coder.github.io/images/studio-easing.png",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="css/site.css?v=202610290100">
+  <link rel="stylesheet" href="css/saasfx.css?v=202610290100">
   
-  <script src="js/site.js?v=202610290054" defer=""></script>
-  <script src="js/saasfx.js?v=202610290054" defer=""></script>
-  <script src="js/explore.js?v=202610290054" defer=""></script>
+  <script src="js/site.js?v=202610290100" defer=""></script>
+  <script src="js/saasfx.js?v=202610290100" defer=""></script>
+  <script src="js/explore.js?v=202610290100" defer=""></script>
 </head>
 <body>
 <header class="nav" id="top">
   <div class="nav__pill">
     <a href="#top" class="brand" aria-label="MotionSaas">
-      <img class="brand__logo" src="images/logo.png" width="32" height="32" alt="MotionSaas">
+      <img class="brand__logo" src="images/logo.webp" width="32" height="32" alt="MotionSaas">
     </a>
     <nav class="nav__links" aria-label="Main">
       <a href="#top" class="is-on" aria-current="page">Shop</a>
@@ -379,7 +400,7 @@
   <div class="container footer__inner">
     <div>
       <a href="./#top" class="brand brand--sm" aria-label="MotionSaas home">
-        <img class="brand__logo" src="images/logo.png" width="32" height="32" alt="MotionSaas" style="border-radius:7px;display:block;">
+        <img class="brand__logo" src="images/logo.webp" width="32" height="32" alt="MotionSaas" style="border-radius:7px;display:block;">
         <span class="brand__name" style="display:inline-block !important;">Motion<span class="accent" style="color:#007aff;">Saas</span></span>
       </a>
       <p class="footer__small">Tools for faster editing.</p>
@@ -405,7 +426,7 @@
 <div class="buybar" data-buybar="" aria-label="Quick download bar">
   <div class="container buybar__inner">
     <div class="buybar__product">
-      <img src="images/logo.png" width="32" height="32" alt="MotionSaas" class="buybar__img" style="border-radius:6px;display:block;">
+      <img src="images/logo.webp" width="32" height="32" alt="MotionSaas" class="buybar__img" style="border-radius:6px;display:block;">
       <div>
         <div class="buybar__title">Motion<b>Saas</b> <span>v1.0</span></div>
         <div class="buybar__sub">Free early access</div>
