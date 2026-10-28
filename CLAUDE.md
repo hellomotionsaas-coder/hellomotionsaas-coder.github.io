@@ -11,7 +11,7 @@ For the complete detailed documentation, see [README.md](./README.md).
 - **Brand Name:** **MotionSaas** / **Motion Saas** (Strictly NO legacy names like "VenmoFX" or "SaaS-FX").
 - **Product Model:** **Free during early access** — direct download of `MotionSaaS.zip`. No payments, Payhip, or carts for now; it becomes paid later, so never write "free forever".
 - **Content must describe the real extension** (tool names and counts from the main repo's HANDOFF.md), not venmofx's SaaS-FX tools.
-- **Live Deployment:** [https://hellomotionsaas-coder.github.io/MotionSaas/](https://hellomotionsaas-coder.github.io/MotionSaas/) (GitHub repository: `hellomotionsaas-coder/MotionSaas`, branch: `main`).
+- **Live Deployment:** [https://hellomotionsaas-coder.github.io/](https://hellomotionsaas-coder.github.io/) (GitHub repository: `hellomotionsaas-coder/hellomotionsaas-coder.github.io`, branch: `main`). The old address `/MotionSaas/` (repo `hellomotionsaas-coder/MotionSaas`) only holds redirects to it now; that repo's Releases still feed the extension's updater, so never delete it.
 - **Backup Reference:** `../venmo website backup/` (DO NOT EDIT — reference only).
 
 ---
@@ -68,9 +68,10 @@ For the complete detailed documentation, see [README.md](./README.md).
 
 Whenever updating `index.html` or `contact.html`:
 1. Keep `contact/index.html` in sync with `contact.html`. (`products/*/index.html` are just redirects to the homepage — nothing to sync.)
-2. Deploy to GitHub Pages: the live site is the `main` branch of the public repo `hellomotionsaas-coder/MotionSaas`, cloned at `../site-deploy`. This folder is NOT a git repo (it sits untracked inside the private extension repo).
+2. Deploy to GitHub Pages: the live site is the `main` branch of the public repo `hellomotionsaas-coder/hellomotionsaas-coder.github.io`, cloned at `../site-pages`. This folder is NOT a git repo (it sits untracked inside the private extension repo).
    - Copy without the extension source or the venmofx copy (both must never be public):
-     `robocopy 'Dont Delete This\venmo website' 'Dont Delete This\site-deploy' /E /XD extension saveweb2zip-com-venmofx-com .git`
-   - Review `git -C 'Dont Delete This\site-deploy' status --short` (only the files you meant to change), commit, `push origin main`.
+     `robocopy 'Dont Delete This\venmo website' 'Dont Delete This\site-pages' /E /XD extension saveweb2zip-com-venmofx-com .git`
+   - Review `git -C 'Dont Delete This\site-pages' status --short` (only the files you meant to change), commit, `push origin main`.
+   - Don't copy the site into `../site-deploy` (the old `hellomotionsaas-coder/MotionSaas` repo): its pages are redirects made by `.claude/site-redirects.js`. A new page on the site gets a redirect there only if old links to it exist.
    - This PC's TEMP folder is access-denied, which breaks Git's credential manager (it falls back to a username prompt). Before pushing, in the same shell: `$env:TEMP = 'D:\Development\projects\MotionSaas\Dont Delete This\tmp'; $env:TMP = 'D:\Development\projects\MotionSaas\Dont Delete This\tmp'`.
    - The repo's Releases (MotionSaaS.zip for the in-panel updater, `depth-model-v1`) are separate from the branch files; a site push doesn't touch them.

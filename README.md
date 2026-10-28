@@ -11,7 +11,7 @@
 - **Product Type:** Adobe After Effects extension (CEP Panel) built specifically for SaaS video editors, product designers, and motion graphics artists.
 - **Original Codebase:** The site was originally created as *VenmoFX* / *SaaS-FX*. It has been completely rebranded to **MotionSaas**.
 - **Monetization Model:** **Free during early access** (the extension is still being built; it will become paid later). Copy says "free during early access" — never "free forever". All payment gateways, checkout drawers, and Payhip modals have been removed for now; the backup has them if pricing comes back. Users download `MotionSaaS.zip` directly from the website without paying, entering credit cards, or signing up.
-- **Official Live Website:** [https://hellomotionsaas-coder.github.io/MotionSaas/](https://hellomotionsaas-coder.github.io/MotionSaas/)
+- **Official Live Website:** [https://hellomotionsaas-coder.github.io/](https://hellomotionsaas-coder.github.io/) (repo `hellomotionsaas-coder/hellomotionsaas-coder.github.io`; the old `/MotionSaas/` address redirects here). See CLAUDE.md → "Subpage Sync & Deployment" for how to deploy.
 - **GitHub Repository:** `https://github.com/hellomotionsaas-coder/MotionSaas.git` (Branch: `main`)
 - **Working Directory:** `D:\Development\projects\MotionSaas\Dont Delete This\venmo website`
 - **Backup Directory (REFERENCE ONLY — DO NOT EDIT):** `D:\Development\projects\MotionSaas\Dont Delete This\venmo website backup`
