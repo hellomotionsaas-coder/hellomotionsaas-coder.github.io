@@ -59,6 +59,7 @@ For the complete detailed documentation, see [README.md](./README.md).
 - `js/site.js`: Nav indicator, smooth scrolling, reveal animations.
 - `js/saasfx.js`: 3D tilt math, hover demo, and carousel physics.
 - `js/contact.js`: the contact form. GitHub Pages can't receive form posts, so it opens the visitor's email app (`mailto:` hello.motionsaas@gmail.com) with topic + message filled in. Don't add forms that POST, or email popups, unless a real backend (e.g. Formspree) is set up and named in the privacy page.
+- `demo/`: the real MotionSaaS Studio, embedded in `#explore` ("Explore it live") by `js/explore.js` (Light/Dark switch presses the Studio's own `#nav-mode`). Never edit `demo/` by hand: regenerate it from the extension with `node scripts/site-demo.js` (run in the main repo, after `node scripts/build-studio.js`). It leaves out `ms-emoji.js` because that loads images from emojicdn.elk.sh and the privacy page promises no outside requests. The privacy page also mentions the Studio's localStorage; keep that true.
 - `404.html`: shown by GitHub Pages for any missing path, so it uses absolute `/…` URLs.
 - `robots.txt`, `sitemap.xml`: list new public pages in the sitemap.
 - Support email on the site is **hello.motionsaas@gmail.com** (the user's choice). The `@motionsaas.com` addresses don't exist.

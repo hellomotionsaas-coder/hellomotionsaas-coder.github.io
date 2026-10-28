@@ -24,6 +24,7 @@
   
   <script src="js/site.js" defer=""></script>
   <script src="js/saasfx.js" defer=""></script>
+  <script src="js/explore.js" defer=""></script>
 </head>
 <body>
 <header class="nav" id="top">
@@ -54,7 +55,7 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Download Extension (Free)</span>
         </a>
-        <a href="#try" class="btn btn--ghost btn--lg">Try Live Demo</a>
+        <a href="#explore" class="btn btn--ghost btn--lg">Try Live Demo</a>
       </div>
 
       <ul class="facts">
@@ -82,6 +83,29 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- EXPLORE THE REAL PANEL -->
+<section class="section section--alt explore" id="explore">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="kicker">Explore it live</p>
+      <h2>The real panel. <span class="grad">Right here.</span></h2>
+      <p class="sub">This is the actual MotionSaas Studio, running in your browser. Click through every category, open presets and play with the sliders. Apply works once it’s inside After Effects.</p>
+    </div>
+    <div class="explore__bar reveal">
+      <div class="seg explore__seg" role="group" aria-label="Panel theme">
+        <button type="button" data-explore-theme="light" aria-pressed="true">Light</button>
+        <button type="button" data-explore-theme="dark" aria-pressed="false">Dark</button>
+      </div>
+      <a class="explore__full" href="demo/studio/index.html" target="_blank" rel="noopener">Open full screen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
+    </div>
+    <div class="window explore__window reveal">
+      <div class="window__bar" aria-hidden="true"><i></i><i></i><i></i><span>MotionSaas Studio · live</span></div>
+      <iframe class="explore__frame" src="demo/studio/index.html" title="MotionSaas Studio, interactive demo" loading="lazy" data-explore-frame></iframe>
+    </div>
+    <p class="explore__hint reveal">Tip: try <b>Text</b>, <b>Transitions</b> and <b>Carousel</b> in the left rail. Every preview is the same motion you get in After Effects.</p>
   </div>
 </section>
 
@@ -384,7 +408,7 @@
       <img src="images/logo.png" width="32" height="32" alt="MotionSaas" class="buybar__img" style="border-radius:6px;display:block;">
       <div>
         <div class="buybar__title">Motion<b>Saas</b> <span>v1.0</span></div>
-        <div class="buybar__sub">100+ tools for After Effects • Free early access</div>
+        <div class="buybar__sub">Free early access</div>
       </div>
     </div>
     <div class="buybar__cta">

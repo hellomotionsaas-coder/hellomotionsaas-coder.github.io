@@ -1,0 +1,62 @@
+html.dark-mode{--dk-stage:#1d1d1d;--dk-panel:#232323;--dk-card:#2a2a2a;--dk-card-2:#1f1f1f;--dk-raise:linear-gradient(180deg,#363636,#2e2e2e);--dk-line:rgba(255,255,255,.07);--dk-line-2:rgba(255,255,255,.12);--dk-text:#e4e4e4;--dk-muted:#9b9b9b;--dk-field:#1a1a1a;--text:#e4e4e4;--muted:#9b9b9b;--surface:#2a2a2a;--bg:#1d1d1d;--line:rgba(255,255,255,.08);--edge:rgba(255,255,255,.1);color-scheme:dark}
+html.dark-mode body{background:#1d1d1d!important;color:var(--dk-text)!important}
+html.dark-mode .nav-bar,html.dark-mode .content-column{background:var(--dk-panel)!important;border-color:var(--dk-line)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)!important}
+html.dark-mode .preset-panel,html.dark-mode .content-column main>article,html.dark-mode .parameters-card,html.dark-mode .preview-card,
+html.dark-mode #easing-tools .mini-preview,html.dark-mode #glass-card-actions,html.dark-mode #shake-advanced,html.dark-mode #code-panel,
+html.dark-mode .reverb-dialog,html.dark-mode #alive-popover,html.dark-mode .fps-popover,html.dark-mode #toast{background:var(--dk-card)!important;border-color:var(--dk-line)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 6px 18px rgba(0,0,0,.25)!important;color:var(--dk-text)!important}
+html.dark-mode .preview-card>.preview,html.dark-mode #easing-motion{background:var(--dk-card-2)!important;border-color:var(--dk-line)!important}
+html.dark-mode #tabs>button:not(.active),html.dark-mode .toolbar button:not([aria-expanded="true"]):not([aria-pressed="true"]),html.dark-mode .toolbar summary:not([aria-expanded="true"]),
+html.dark-mode #presets>button:not(.active),html.dark-mode #favorite,html.dark-mode #copy-code,html.dark-mode #copy-paste,html.dark-mode #remove,html.dark-mode #carousel-path-edit,
+html.dark-mode .path-action,html.dark-mode .reverb-choice-trigger,html.dark-mode .reverb-dialog footer>button:not(.primary),html.dark-mode .reverb-dialog header>button,
+html.dark-mode #alive-popover header>button,html.dark-mode #alive-popover footer>button:not(.primary),html.dark-mode #alive-copy-paste,html.dark-mode #fps-close,html.dark-mode #fps-reset,html.dark-mode .action-menu button{background:var(--dk-raise)!important;border-color:var(--dk-line-2)!important;color:var(--dk-text)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 2px 6px rgba(0,0,0,.25)!important}
+html.dark-mode #tabs>button:not(.active) svg,html.dark-mode .toolbar svg{color:var(--dk-text)!important;stroke:currentColor}
+html.dark-mode #apply:disabled{background:#2a2a2a!important;color:#6a6a6a!important;border-color:var(--dk-line)!important}
+html.dark-mode #name,html.dark-mode .panel-label,html.dark-mode .preset-copy strong,html.dark-mode .section-title span,html.dark-mode .field-label,html.dark-mode .field-label span,
+html.dark-mode #reverb-title,html.dark-mode .reverb-dialog label,html.dark-mode #alive-popover strong,html.dark-mode #alive-popover label,html.dark-mode .fps-popover strong,html.dark-mode .fps-popover label,
+html.dark-mode #glass-card-actions strong,html.dark-mode #glass-card-actions label,html.dark-mode #code-inspector>summary,html.dark-mode #code-value,html.dark-mode #shake-advanced>summary,html.dark-mode #fps-value{color:var(--dk-text)!important}
+html.dark-mode #context,html.dark-mode .preset-group-label,html.dark-mode .range-control output,html.dark-mode #reverb-help,html.dark-mode .alive-hint,html.dark-mode .alive-howto,html.dark-mode #alive-popover output,
+html.dark-mode .reverb-dialog output,html.dark-mode .field-help,html.dark-mode .segmented-control>button:not(.active),html.dark-mode .style-choice-buttons>button:not(.active){color:var(--dk-muted)!important}
+html.dark-mode input:not([type=range]):not([type=color]):not([type=checkbox]),html.dark-mode select,html.dark-mode textarea{background:var(--dk-field)!important;color:var(--dk-text)!important;border-color:var(--dk-line-2)!important}
+html.dark-mode input[type=color]{background:var(--dk-field)!important;border-color:var(--dk-line-2)!important}
+html.dark-mode .segmented-control,html.dark-mode .style-choice-buttons{background:var(--dk-field)!important;border-color:var(--dk-line)!important}
+html.dark-mode .segmented-control>button:not(.active),html.dark-mode .style-choice-buttons>button:not(.active){background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+html.dark-mode input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(90deg,#2d7cf6 0 var(--range-fill,0%),rgba(255,255,255,.14) var(--range-fill,0%))!important}
+html.dark-mode input[type=range]::-webkit-slider-thumb{background:#eef2ff!important;border-color:#eef2ff!important;box-shadow:0 2px 8px rgba(0,0,0,.5)!important}
+html.dark-mode .toggle-control[aria-checked="false"]{background:#3a3a3a!important;border-color:var(--dk-line-2)!important;color:transparent!important}
+html.dark-mode .kh-modal-shade,html.dark-mode .reverb-shade{background:rgba(0,0,0,.5)!important}
+html.dark-mode ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16)!important}
+html.dark-mode #presets::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22)!important}
+#nav-mode{display:flex!important;align-items:center;justify-content:center;width:30px;height:30px;margin:4px auto 2px;border-radius:50%;font-size:15px;line-height:1;cursor:pointer;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);color:#10245e;box-shadow:0 3px 10px rgba(40,90,170,.15)}
+html.dark-mode #nav-mode{background:var(--dk-raise);border-color:var(--dk-line-2);color:#e4e4e4}
+html.dark-mode #curve{background:#1f1f1f!important;border-color:var(--dk-line-2)!important}
+html.dark-mode #curve line,html.dark-mode #curve .grid,html.dark-mode #curve path[stroke-dasharray]{stroke:rgba(255,255,255,.12)!important}
+html.dark-mode #curve text{fill:#9b9b9b!important}
+html.dark-mode #tabs button:not(.active) svg *{stroke:#e4e4e4!important}
+html.dark-mode #tabs button:not(.active) img{filter:invert(1) brightness(1.6)}
+html.dark-mode .reverb-choice-list,html.dark-mode .copy-paste-menu,html.dark-mode .glass-font-options{background:#2b2b2b!important;border-color:var(--dk-line-2)!important;box-shadow:0 14px 34px rgba(0,0,0,.45)!important}
+html.dark-mode .reverb-dialog button.reverb-choice-item{color:var(--dk-text)!important;background:transparent!important}
+html.dark-mode .reverb-dialog button.reverb-choice-item:hover{background:rgba(255,255,255,.07)!important}html.dark-mode .reverb-dialog button.reverb-choice-item:hover,html.dark-mode .reverb-dialog button.reverb-choice-item:focus-visible{background:rgba(255,255,255,.07)!important}
+html.dark-mode .reverb-dialog button.reverb-choice-item[aria-selected=true]{background:linear-gradient(135deg,#2a8df5,#1453d6)!important;color:#fff!important}
+html.dark-mode .copy-paste-menu button{background:var(--dk-raise)!important;color:var(--dk-text)!important;border-color:var(--dk-line-2)!important;box-shadow:none!important}
+html.dark-mode .copy-paste-menu button:disabled{background:#262626!important;color:#6f6f6f!important;border-color:var(--dk-line)!important}
+html.dark-mode .reverb-choice-trigger:after{border-color:#b9b9b9!important}
+html.dark-mode select{background-image:none}
+html.dark-mode .primary:disabled,html.dark-mode .apply-row .primary:disabled,html.dark-mode .reverb-dialog footer>button.primary:disabled,html.dark-mode #alive-popover footer>button.primary:disabled,html.dark-mode #fps-apply:disabled{background:#2c2c2c!important;color:#6d6d6d!important;border-color:var(--dk-line)!important;box-shadow:none!important;opacity:1!important}
+html.dark-mode #curve,html.dark-mode .preview-card>.preview,html.dark-mode #easing-motion{box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 0 28px rgba(54,124,255,.05)!important}
+html.dark-mode #copy-code,html.dark-mode #connection-dot{box-shadow:inset 0 1px 0 rgba(255,255,255,.08)!important}
+html.dark-mode .kh-modal-shade,html.dark-mode .reverb-shade{background:rgba(8,8,8,.66)!important;-webkit-backdrop-filter:blur(6px)!important;backdrop-filter:blur(6px)!important}
+html.dark-mode .reverb-dialog,html.dark-mode #alive-popover,html.dark-mode .fps-popover{box-shadow:0 18px 50px rgba(0,0,0,.55)!important}
+html.dark-mode body::before,html.dark-mode .content-column::before,html.dark-mode .content-column::after,html.dark-mode .nav-bar::before{background:none!important;opacity:0!important}
+html.dark-mode .kh-color-shade{background:rgba(8,8,8,.62)!important}
+html.dark-mode .kh-color-dialog{background:#2a2a2a!important;border-color:var(--dk-line-2)!important;color:var(--dk-text)!important;box-shadow:0 18px 50px rgba(0,0,0,.55)!important}
+html.dark-mode .kh-color-dialog h2,html.dark-mode .kh-color-dialog strong{color:var(--dk-text)!important}
+html.dark-mode .kh-color-palette-wrap{border-color:var(--dk-line-2)!important}
+html.dark-mode .kh-color-dialog>button,html.dark-mode .kh-color-sampler,html.dark-mode .kh-color-dialog footer button:not(.primary){background:var(--dk-raise)!important;color:var(--dk-text)!important;border-color:var(--dk-line-2)!important;box-shadow:none!important}
+html.dark-mode input.kh-color-hue::-webkit-slider-runnable-track{background:linear-gradient(90deg,red,#ff0,#0f0,#0ff,#00f,#f0f,red)!important;height:14px;border-radius:8px}
+html.dark-mode #glass-card-actions .glass-font-options button{color:var(--dk-text)!important}
+html.dark-mode #glass-card-actions .glass-font-options button:hover,html.dark-mode #glass-card-actions .glass-font-options button:focus,html.dark-mode #glass-card-actions .glass-font-options button[aria-selected="true"]{background:rgba(255,255,255,.09)!important;color:#fff!important}
+@media (min-width:300px){html.dark-mode body::after{background:none!important;opacity:0!important}}
+html.dark-mode .kh-strip-rail::before{background:rgba(255,255,255,.1)}
+html.dark-mode .kh-strip-thumb{background:rgba(255,255,255,.32)}
+html.dark-mode .kh-strip-rail:hover .kh-strip-thumb,html.dark-mode .kh-strip-rail.dragging .kh-strip-thumb{background:rgba(255,255,255,.55)}
+html.dark-mode .preview-card>.preview{background-color:#111316!important;background-image:linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px)!important;background-size:26px 26px!important;background-position:center!important;background-repeat:repeat!important}

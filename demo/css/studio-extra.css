@@ -1,0 +1,464 @@
+/* MotionSaaS Studio — extension-only additions inside the Studio frame (extension/studio/index.html).
+   The rail buttons added by studio/studio-tools.js: tool panels turned on in Settings, then ⚙ Settings and ⓘ About.
+   Kept separate from the built demo CSS so a rebuild (scripts/build-studio.js) never overwrites it. */
+
+:root {
+  --ms-rail-bg: linear-gradient(145deg, rgba(255, 255, 255, .9), rgba(224, 238, 255, .72));
+  --ms-rail-border: rgba(255, 255, 255, .95);
+  --ms-rail-text: #0b2357;
+  --ms-rail-hover: #0b43c8;
+  --ms-rail-shadow: inset 0 1px 0 #fff, 0 5px 14px rgba(29, 70, 142, .1);
+  --ms-rail-line: rgba(52, 102, 188, .16);
+  --ms-code-bg: rgba(11, 35, 87, .06);
+}
+html.dark-mode {
+  --ms-rail-bg: linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+  --ms-rail-border: rgba(255, 255, 255, .1);
+  --ms-rail-text: rgba(236, 242, 255, .86);
+  --ms-rail-hover: #fff;
+  --ms-rail-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 5px 14px rgba(0, 0, 0, .25);
+  --ms-rail-line: rgba(255, 255, 255, .08);
+  --ms-code-bg: rgba(0, 0, 0, .25);
+}
+
+/* Palettes in the colour dialog (studio-tools.js): a picker and a joined swatch strip, like the panel's. */
+.ms-pal { margin: 10px 0 2px; padding-top: 10px; border-top: 1px solid var(--ms-rail-line); }
+.ms-pal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; font-size: 11px; font-weight: 700; color: var(--ms-rail-text); }
+.ms-pal-pick { max-width: 60%; height: 24px; padding: 0 6px; font-size: 11px; border-radius: 8px; border: 1px solid var(--ms-rail-border); background: var(--ms-code-bg); color: inherit; }
+.ms-pal-strip { display: flex; height: 26px; border-radius: 9px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--ms-rail-line); }
+.ms-pal-strip .ms-pal-sw { flex: 1 1 0; min-width: 0; height: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; cursor: pointer; transition: flex-grow .22s cubic-bezier(.2, .8, .2, 1); }
+.ms-pal-strip .ms-pal-sw:hover { flex-grow: 1.9; }
+
+.ms-rail { display: flex; flex-direction: column; flex-shrink: 0; padding-top: 6px; border-top: 1px solid var(--ms-rail-line); }
+.ms-rail-panels { display: flex; flex-direction: column; }
+.ms-rail-panels:empty { display: none; }
+.ms-rail.has-panels .ms-rail-panels { padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px solid var(--ms-rail-line); }
+.ms-rail-fixed { display: flex; justify-content: center; }
+
+.ms-rail-btn {
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  height: 34px; min-width: 34px; margin: 0 0 6px; padding: 0 6px;
+  border-radius: 12px; border: 1px solid var(--ms-rail-border); background: var(--ms-rail-bg);
+  color: var(--ms-rail-text); box-shadow: var(--ms-rail-shadow);
+  font: 600 16px/1 system-ui, -apple-system, "Segoe UI", sans-serif; cursor: pointer;
+  transition: transform .15s ease, color .15s ease;
+}
+.ms-rail-btn:hover { color: var(--ms-rail-hover); transform: translateY(-1px); }
+.ms-rail-panel { width: 100%; }
+.ms-rail-fixed .ms-rail-btn { flex: 1 1 0; margin: 0 3px 6px; font-size: 15px; }
+.ms-rail-fixed .ms-rail-btn:first-child { margin-left: 0; }
+.ms-rail-fixed .ms-rail-btn:last-child { margin-right: 0; }
+
+/* Very narrow rail: stack the two fixed buttons. */
+@media (max-width: 520px) {
+  .ms-rail-fixed { flex-direction: column; }
+  .ms-rail-fixed .ms-rail-btn { margin: 0 0 6px; }
+}
+
+/* Light / Dark lives in Settings now; the Studio's CSS gives #nav-mode a display that beats [hidden]. */
+#nav-mode[hidden] { display: none !important; }
+
+/* Rail ⚙ / ⓘ: line icons like the rest of the Studio's icon buttons. */
+.ms-rail-icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Settings / About dialogs (studio-tools.js), on the Reverb dialog's card ---------- */
+.ms-dialog-shade[hidden] { display: none !important; }
+.ms-dialog-shade { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1003; display: flex; align-items: center; justify-content: center; padding: 12px; box-sizing: border-box; }
+.ms-dialog { width: 420px; max-width: 100%; max-height: 100%; overflow: auto; box-sizing: border-box; }
+/* The dialog's scroll bar: a soft rounded thumb, inset from the edge and clear of the rounded corners
+   (like the Studio's and the tool panels' scroll bars), no track, no arrows. */
+.ms-dialog::-webkit-scrollbar { width: 12px; background: transparent; }
+.ms-dialog::-webkit-scrollbar-track { background: transparent; margin: 22px 0; }
+.ms-dialog::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+.ms-dialog::-webkit-scrollbar-thumb { min-height: 40px; border-radius: 8px; border: 4px solid transparent; background-clip: padding-box; background-color: rgba(255, 255, 255, .16); }
+.ms-dialog::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, .28); }
+html:not(.dark-mode) .ms-dialog::-webkit-scrollbar-thumb { background-color: rgba(20, 40, 90, .18); }
+html:not(.dark-mode) .ms-dialog::-webkit-scrollbar-thumb:hover { background-color: rgba(20, 40, 90, .3); }
+.ms-dialog header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.ms-dialog header h2 { margin: 0; font-size: 16px; }
+.ms-dialog-body { display: flex; flex-direction: column; }
+.ms-dlg-group { padding: 12px 0; border-top: 1px solid var(--ms-rail-line); }
+.ms-dlg-group:first-child { border-top: 0; padding-top: 4px; }
+.ms-dlg-h { margin: 0 0 10px; font-size: 13px; font-weight: 700; }
+.ms-dlg-note { margin: 0 0 8px; font-size: 11px; line-height: 1.4; opacity: .72; }
+.ms-seg { display: flex; padding: 3px; border-radius: 12px; background: var(--ms-code-bg); margin-bottom: 12px; }
+.ms-seg button { flex: 1 1 0; min-width: 0; padding: 7px 4px; border: 0; border-radius: 9px; background: transparent; color: inherit; font-weight: 600; font-size: 12px; cursor: pointer; }
+.ms-seg button + button { margin-left: 3px; }
+.ms-seg button.active { background: var(--active-fill, #1564ff); color: #fff; box-shadow: 0 4px 12px rgba(20, 90, 255, .3); }
+.ms-swatches { display: flex; flex-wrap: wrap; }
+.ms-swatch { width: 26px; height: 26px; margin: 0 8px 8px 0; padding: 0; border-radius: 50%; border: 2px solid transparent; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
+.ms-swatch.active { border-color: var(--ms-rail-text); box-shadow: 0 0 0 2px rgba(0, 0, 0, .15); }
+.ms-dialog .ms-panel-row { padding: 8px 0; border-top: 1px solid var(--ms-rail-line); }
+.ms-dialog .ms-panel-row:first-of-type { border-top: 0; }
+.ms-panel-line, .ms-section-line { display: flex; align-items: center; }
+.ms-panel-line .ms-panel-icon { width: 24px; flex-shrink: 0; }
+.ms-panel-line .ms-panel-name { flex: 1; min-width: 0; font-weight: 600; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ms-panel-line .ms-panel-count { margin-right: 8px; font-size: 10px; font-weight: 700; color: var(--accent); }
+.ms-panel-line .ms-panel-more { margin-right: 8px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--ms-rail-border); background: var(--ms-rail-bg); color: inherit; font-size: 10px; font-weight: 700; cursor: pointer; }
+.ms-panel-sections { padding: 6px 0 2px 24px; }
+.ms-panel-sections[hidden] { display: none; }
+.ms-section-line { justify-content: space-between; padding: 4px 0; font-size: 12px; }
+.ms-section-line span { flex: 1; min-width: 0; margin-right: 8px; }
+.toggle-control.ms-mixed { opacity: .6; }
+.ms-dlg-input { width: 100%; box-sizing: border-box; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--ms-rail-border); background: var(--ms-code-bg); color: inherit; font: inherit; }
+.ms-about-brand { display: flex; align-items: center; margin: 4px 0 10px; }
+.ms-about-brand .brand-mark { margin-right: 12px; }
+/* the MotionSaaS mark (img/logo.webp): a soft glow that breathes, and a light sweep now and then */
+.ms-about-logo { flex: 0 0 44px; width: 44px; height: 44px; margin-right: 12px; object-fit: contain;
+  -webkit-filter: drop-shadow(0 4px 10px rgba(var(--ms-glow, 17, 126, 255), .45)); filter: drop-shadow(0 4px 10px rgba(var(--ms-glow, 17, 126, 255), .45));
+  animation: ms-logo-breathe 4.5s ease-in-out infinite; }
+@keyframes ms-logo-breathe { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-2px) scale(1.04); } }
+.ms-about-brand strong { display: block; font-size: 15px; }
+.ms-about-brand small { display: block; font-size: 11px; opacity: .7; margin-top: 2px; }
+.ms-about-actions { display: flex; flex-wrap: wrap; margin: 6px 0 4px; }
+.ms-about-actions button { flex: 1 1 120px; margin: 0 6px 6px 0; }
+.ms-about-out { display: block; min-height: 16px; font-size: 12px; margin: 4px 0; }
+.ms-about-out.error { color: var(--ms-danger, #ff453a); }
+.ms-about-report[hidden] { display: none; }
+.ms-about-report textarea { width: 100%; height: 160px; resize: vertical; box-sizing: border-box; border: 0; color: inherit; }
+
+/* Settings controls look like the Studio's own: full-size switches (they were squeezed to 37 px, so the
+   knob ran past the edge), flat segment buttons, and raised buttons in the current light / dark style. */
+/* The dialog sits on the Reverb card, whose button rules (padding 6px 9px, min-height…) bent the switch:
+   pin the Studio switch's own box — 48 × 26, 3 px padding, 18 px knob that travels 21 px. */
+.ms-dialog .toggle-control {
+  flex: 0 0 48px !important; width: 48px !important; min-width: 48px !important; max-width: 48px !important;
+  height: 26px !important; min-height: 26px !important; max-height: 26px !important;
+  padding: 3px !important; margin: 0 !important; border-radius: 999px !important; box-sizing: border-box !important;
+  display: block !important; line-height: 0 !important; font-size: 0 !important; overflow: hidden !important;
+}
+/* Width and height without !important (an !important value can't be animated): the knob stretches while it
+   springs across (ms-knob, below). The id-like selector weight keeps them above the Studio's own sizes. */
+html body .ms-dialog .toggle-control.toggle-control:before {
+  content: "" !important; display: block !important; width: 18px; height: 18px; margin: 0 !important;
+  border-radius: 999px !important; background: #fff !important; transform: none !important; transition: transform .32s var(--ms-soft, ease) !important;
+}
+html body .ms-dialog .toggle-control.toggle-control[aria-checked="true"]:before { transform: translateX(21px) !important; }
+.ms-dialog .ms-panel-line .toggle-control, .ms-dialog .ms-section-line .toggle-control { margin-left: 0 !important; }
+.ms-dialog .ms-seg button:not(.active) { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
+.ms-dialog .ms-seg button { min-height: 32px; border: 1px solid transparent !important; }
+.ms-dialog .ms-about-actions button, .ms-dialog .ms-panel-more, .ms-dialog .ms-about-report button, .ms-dialog header > button {
+  border-radius: 12px; border: 1px solid; font-weight: 700; cursor: pointer;
+}
+.ms-dialog .ms-about-actions button { min-height: 36px; padding: 8px 10px; font-size: 12px; }
+.ms-dialog header > button { width: 34px; height: 34px; min-height: 34px; padding: 0; border-radius: 10px; font-size: 18px; line-height: 1; }
+.ms-dialog .ms-panel-more { padding: 5px 11px; border-radius: 999px; font-size: 10px; }
+html.dark-mode .ms-dialog .ms-about-actions button:not(.primary), html.dark-mode .ms-dialog .ms-panel-more,
+html.dark-mode .ms-dialog .ms-about-report button, html.dark-mode .ms-dialog header > button {
+  background: var(--dk-raise) !important; border-color: var(--dk-line-2) !important; color: var(--dk-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 2px 6px rgba(0, 0, 0, .25) !important;
+}
+html:not(.dark-mode) .ms-dialog .ms-about-actions button:not(.primary), html:not(.dark-mode) .ms-dialog .ms-panel-more,
+html:not(.dark-mode) .ms-dialog .ms-about-report button, html:not(.dark-mode) .ms-dialog header > button {
+  background: linear-gradient(145deg, rgba(255, 255, 255, .85), rgba(233, 246, 255, .7)) !important; border-color: #fff !important; color: var(--text) !important;
+  box-shadow: 0 2px 8px rgba(57, 125, 211, .12) !important;
+}
+html.dark-mode .ms-dialog .ms-seg { background: #1c1c1c; border: 1px solid var(--dk-line); }
+html.dark-mode .ms-dialog .ms-seg button:not(.active) { color: var(--dk-muted) !important; }
+html.dark-mode .ms-dialog .ms-dlg-input { background: var(--dk-field); border-color: var(--dk-line-2); }
+.ms-about-brand .brand-mark { display: flex; align-items: center; justify-content: center; flex: 0 0 38px; width: 38px; height: 38px; border-radius: 11px; background: var(--active-fill); color: var(--ms-ink, #fff); font-weight: 800; font-size: 16px; box-shadow: 0 4px 12px rgba(var(--ms-glow, 17, 126, 255), .25); }
+
+/* Engine didn't load: say so above everything (the exact error, Retry, Copy). */
+.ms-engine-banner { display: flex; align-items: center; flex-wrap: wrap; margin: 0 0 8px; padding: 10px 12px; border-radius: 14px; background: rgba(255, 69, 58, .14); border: 1px solid rgba(255, 69, 58, .45); font-size: 12px; line-height: 1.4; }
+.ms-engine-banner[hidden] { display: none; }
+.ms-engine-msg { flex: 1 1 200px; margin-right: 8px; }
+.ms-engine-banner button { margin: 4px 6px 4px 0; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--ms-rail-border); background: var(--ms-rail-bg); color: inherit; font-weight: 700; font-size: 11px; cursor: pointer; }
+
+/* ---------- accent colours (Settings → Appearance) ---------- */
+/* studio-tools.js sets each theme's own gradient (--active-fill), colour (--accent), rim, glow (r,g,b) and
+   text colour (--ms-ink) on html.ms-themed. The Studio already paints most accents with those variables;
+   these rules cover the places where it uses fixed blues. (Blue is the Studio's own look, untouched.) */
+html.ms-themed .tabs button.active, html.ms-themed #presets button.active, html.ms-themed .primary:not(:disabled),
+html.ms-themed .segmented-control button.active, html.ms-themed .ms-seg button.active, html.ms-themed .curve-tools button:first-child,
+html.ms-themed .fps-control[open] summary, html.ms-themed #fps-apply:not(:disabled),
+html.ms-themed .style-choice-buttons button[aria-pressed="true"], html.ms-themed #easing-dot {
+  background: var(--active-fill) !important;
+  border-color: var(--ms-rim) !important;
+  color: var(--ms-ink) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 4px 14px rgba(var(--ms-glow), .24) !important;
+}
+html.ms-themed .tabs button.active svg, html.ms-themed .tabs button.active svg * { color: var(--ms-ink) !important; stroke: var(--ms-ink) !important; }
+html.ms-themed .toolbar [aria-expanded="true"], html.ms-themed .toolbar [aria-pressed="true"] {
+  border-color: var(--ms-rim) !important; color: var(--ms-ink) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 4px 14px rgba(var(--ms-glow), .24) !important;
+}
+html.ms-themed .toggle-control[aria-checked="true"] { background: var(--active-fill) !important; border-color: var(--ms-rim) !important; }
+html.ms-themed input[type="range"]::-webkit-slider-runnable-track { background: linear-gradient(90deg, var(--accent) 0 var(--range-fill, 0%), #c9d7eb var(--range-fill, 0%)) !important; }
+html.ms-themed.dark-mode input[type="range"]::-webkit-slider-runnable-track { background: linear-gradient(90deg, var(--accent) 0 var(--range-fill, 0%), rgba(255, 255, 255, .14) var(--range-fill, 0%)) !important; }
+html.ms-themed input, html.ms-themed select { accent-color: var(--accent); }
+html.ms-themed #curve-line, html.ms-themed #curve path { stroke: var(--accent) !important; }
+html.ms-themed #curve ellipse, html.ms-themed #curve circle { fill: var(--accent) !important; }
+html.ms-themed .kh-strip-thumb { background: rgba(var(--ms-glow), .6) !important; box-shadow: 0 2px 7px rgba(var(--ms-glow), .18) !important; }
+html.ms-themed .kh-strip-rail:hover .kh-strip-thumb, html.ms-themed .kh-strip-rail.dragging .kh-strip-thumb { background: rgba(var(--ms-glow), .85) !important; }
+html.ms-themed .fps-popover output, html.ms-themed #fps-demo-value, html.ms-themed .mini-preview button:not(.primary),
+html.ms-themed .ms-panel-count { color: var(--accent) !important; }
+html.ms-themed ::selection { background: var(--accent); }
+/* Light page in a non-blue accent: a calm near-white page with two faint glows of the accent, instead of the
+   Studio's sky-blue page (whose blues ../js/ms-tint.js would otherwise turn into strong colour washes). */
+html.ms-themed:not([data-ms-accent="blue"]):not(.dark-mode) body {
+  background: radial-gradient(ellipse at 0% 10%, rgba(var(--ms-glow), .14) 0%, transparent 42%),
+    radial-gradient(ellipse at 100% 96%, rgba(var(--ms-glow), .1) 0%, transparent 46%),
+    linear-gradient(145deg, #f2f2f4 0%, #fafafb 50%, #f0f0f3 100%) !important;
+}
+html.ms-themed:not([data-ms-accent="blue"]):not(.dark-mode) body::before { background: none !important; }
+/* The switch knob's shadow was a fixed blue glow; in dark mode it is a plain shadow, in light mode the theme's. */
+html.ms-themed .toggle-control:before { box-shadow: 0 3px 9px rgba(var(--ms-glow), .25) !important; }
+html.dark-mode .toggle-control:before { box-shadow: 0 2px 6px rgba(0, 0, 0, .45) !important; }
+
+/* ---------- Frame rate and Reverb Out dialogs ---------- */
+/* Their previews are fixed 460 / 420 px canvases: scale them to the dialog instead of scrolling sideways. */
+.fps-popover, .reverb-dialog { overflow-x: hidden !important; box-sizing: border-box; max-width: calc(100vw - 24px) !important; }
+.fps-popover canvas, .reverb-dialog canvas { display: block; width: 100% !important; max-width: 100%; height: auto !important; border-radius: 12px; }
+/* The Frame rate close button: the same square button as Reverb Out's. */
+.fps-popover header { display: flex; align-items: center; justify-content: space-between; }
+.fps-popover header > button {
+  width: 34px !important; min-width: 34px; height: 34px !important; min-height: 34px !important; padding: 0 !important;
+  border-radius: 10px !important; font-size: 20px !important; line-height: 1 !important; margin-left: auto;
+  display: flex; align-items: center; justify-content: center;
+}
+html.dark-mode .fps-popover header > button { background: linear-gradient(#363636, #2e2e2e) !important; color: #e4e4e4 !important; border: 1px solid rgba(255, 255, 255, .1) !important; box-shadow: none !important; }
+/* Reverb's own Apply used a different fixed blue: give it the theme's fill like every other primary button. */
+.reverb-dialog .primary:not(:disabled) { background: var(--active-fill) !important; border-color: var(--ms-rim, #d5fcff) !important; color: var(--ms-ink, #fff) !important; }
+
+/* Reverb dialog: the After Effects buttons under the preview ones (studio-tools.js). */
+.ms-reverb-ae { display: flex; justify-content: flex-end; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--ms-rail-line); }
+.ms-reverb-ae button + button { margin-left: 8px; }
+
+/* Controls → Motion Blur row (studio-tools.js), laid out like the Studio's own switch rows. */
+.ms-control-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
+.ms-control-row .field-label { font-weight: 600; }
+
+/* Code panel under Controls (Easing / Expressions). */
+.ms-code { margin-top: 10px; padding: 10px 14px; border-radius: 18px; border: 1px solid var(--ms-rail-border); background: var(--ms-rail-bg); box-shadow: var(--ms-rail-shadow); color: var(--ms-rail-text); }
+.ms-code[hidden] { display: none; }
+.ms-code summary { cursor: pointer; font-weight: 700; font-size: 13px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.ms-code summary::-webkit-details-marker { display: none; }
+.ms-code summary:after { content: "\2304"; font-size: 14px; opacity: .6; }
+.ms-code[open] summary:after { content: "\2303"; }
+.ms-code-text { margin: 10px 0 8px; padding: 10px; max-height: 220px; overflow: auto; border-radius: 10px; background: var(--ms-code-bg); font: 11px/1.5 "SF Mono", Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
+.ms-code-copy { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ms-rail-border); background: var(--ms-rail-bg); color: var(--ms-rail-text); font-weight: 700; font-size: 11px; cursor: pointer; }
+
+/* :has() stand-in for After Effects' older panel browser (studio/legacy.js sets the class). */
+.mini-preview.ms-has-apply-row { align-content: start; }
+
+/* Apple emojis (../js/ms-emoji.js): sized and aligned like the text around them. */
+img.ms-emoji { display: inline-block; width: 1.15em; height: 1.15em; margin: 0 .05em; vertical-align: -.2em; object-fit: contain; pointer-events: none; -webkit-user-select: none; user-select: none; }
+/* Tool panel icons (../js/ms-emoji.js): line icons in the text colour, sized like the text. */
+.ms-ico { display: inline-block; width: 1.15em; height: 1.15em; margin: 0 .08em; vertical-align: -.2em; line-height: 0; pointer-events: none; -webkit-user-select: none; user-select: none; }
+.ms-ico svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.ms-ico-dot { width: .62em; height: .62em; border-radius: 50%; vertical-align: .02em; margin: 0 .25em; }
+/* Tool panel buttons in the rail: the icon at the size of the category icons. */
+#tabs > button.ms-rail-panel .ms-ico { width: 20px; height: 20px; margin: 0; vertical-align: middle; }
+.ms-rail-row-icon .ms-ico, .ms-panel-line .ms-ico { width: 18px; height: 18px; margin: 0; }
+
+/* Inside the extension there is no web page around the Studio: no demo-only chrome. */
+html.ms-embedded .web-demo-note { display: none; }
+
+/* No focus box anywhere, mouse or keyboard (the owner's call): a clicked or focused control never gets the
+   browser's rectangle or a focus ring. */
+html :focus, html :active { outline: none !important; }
+
+/* Narrow panels show the presets as one sideways strip. Keep it compact: chips, then the scroll bar right
+   under them (the Studio reserved 20 px of empty space there), and chips share the row when they all fit. */
+@media (max-width: 410px) {
+  html.ms-embedded .content-column main > .preset-panel { padding: 4px 0 2px !important; }
+  html.ms-embedded .content-column main > .preset-panel > #presets { padding-top: 4px !important; padding-bottom: 8px !important; }
+  html.ms-embedded .content-column main > .preset-panel > #presets > button { flex: 1 0 auto !important; }
+  html.ms-embedded .kh-strip-rail { margin: -8px 14px 0 !important; }
+  /* Soft edges where chips scroll out of view (fixes.css switched every mask on #presets off). A side
+     fades only while there is more to scroll that way (.at-start / .at-end are set by the Studio). */
+  html.ms-embedded .content-column main > .preset-panel > #presets {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%) !important;
+    mask-image: linear-gradient(90deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%) !important;
+  }
+  html.ms-embedded .content-column main > .preset-panel > #presets.at-start {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 34px), transparent 100%) !important;
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 34px), transparent 100%) !important;
+  }
+  html.ms-embedded .content-column main > .preset-panel > #presets.at-end {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 34px, #000 100%) !important;
+    mask-image: linear-gradient(90deg, transparent 0, #000 34px, #000 100%) !important;
+  }
+  html.ms-embedded .content-column main > .preset-panel > #presets.at-start.at-end { -webkit-mask-image: none !important; mask-image: none !important; }
+}
+
+/* The preview card was sticky: in a docked panel it stayed pinned over the controls while they scrolled
+   underneath (sliders showed around it). It scrolls with the rest now. */
+html.ms-embedded .workspace-scroll .preview-card { position: relative !important; top: auto !important; }
+
+/* ---------- Motion (../js/ms-motion.js adds .ms-flip) ---------- */
+/* Quiet and quick, like macOS: a control presses in a little while held and eases back when let go, colours
+   cross-fade, a switch knob glides across with the faintest settle, dialogs fade up a few pixels. No pops,
+   no blur on clicks. --ms-soft settles with a hint of overshoot; --ms-ease-out without one. --ms-spring (more
+   bounce) is kept for dragging rows in Settings → Rail. */
+:root { --ms-spring: cubic-bezier(.34, 1.56, .64, 1); --ms-soft: cubic-bezier(.25, 1.12, .5, 1); --ms-ease-out: cubic-bezier(.22, 1, .36, 1); }
+@keyframes ms-knob {
+  0% { width: 18px; }
+  40% { width: 21px; }
+  100% { width: 18px; }
+}
+@keyframes ms-dialog-in {
+  0% { opacity: 0; transform: translateY(6px) scale(.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes ms-dialog-out { to { opacity: 0; transform: translateY(4px) scale(.99); } }
+@keyframes ms-shade-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  button, summary, .ms-swatch {
+    transition: transform .28s var(--ms-ease-out), background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .25s ease, opacity .2s ease;
+  }
+  button:active:not(:disabled), summary:active, .ms-swatch:active { transform: scale(.97); transition-duration: .08s; }
+  .toggle-control:before { transition: transform .32s var(--ms-soft) !important; }
+  .toggle-control { transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease !important; }
+  .toggle-control.ms-flip:before { animation: ms-knob .32s var(--ms-ease-out); }
+  .ms-dialog-shade:not([hidden]), .kh-modal-shade:not([hidden]) { animation: ms-shade-in .2s ease both; }
+  .ms-dialog-shade:not([hidden]) > .ms-dialog, .kh-modal-shade:not([hidden]) > *, #alive-popover:not([hidden]) {
+    animation: ms-dialog-in .26s var(--ms-ease-out) both;
+  }
+  .ms-dialog-shade.closing > .ms-dialog { animation: ms-dialog-out .16s ease-in both; }
+  .ms-dialog-shade.closing { opacity: 0; transition: opacity .16s ease; }
+  .ms-swatch.active { transition: transform .3s var(--ms-soft), box-shadow .25s ease, border-color .2s ease; }
+}
+
+/* Appearance (Light / Dark / Follow AE): a pill slides to the chosen option. */
+.ms-seg { position: relative; }
+.ms-seg .ms-seg-thumb {
+  position: absolute; top: 3px; bottom: 3px; width: calc((100% - 12px) / 3); border-radius: 9px; z-index: 0;
+  background: var(--active-fill, #1564ff); box-shadow: 0 4px 12px rgba(var(--ms-glow, 17, 126, 255), .3);
+  transition: left .34s var(--ms-soft), transform .34s var(--ms-soft);
+}
+.ms-seg.has-thumb button { position: relative; z-index: 1; }
+html .ms-dialog .ms-seg.has-thumb button.active, html.ms-themed .ms-dialog .ms-seg.has-thumb button.active {
+  background: transparent !important; border-color: transparent !important; box-shadow: none !important; color: var(--ms-ink, #fff) !important;
+}
+/* A tool panel's Sections list opens and closes smoothly (studio-tools.js sets the height). */
+.ms-rail-item .ms-panel-sections { overflow: hidden; transition: max-height .42s var(--ms-ease-out), opacity .25s ease; }
+
+/* ---------- Rail arranged in Settings → Rail (studio-tools.js) ---------- */
+#tabs > .ms-rail-hidden { display: none !important; }
+/* Tool panel buttons sit in the category list now: same size as the categories, emoji centred. */
+#tabs > button.ms-rail-panel { font-size: 20px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.ms-rail-panels:empty { display: none; }
+/* One entry per rail button: the row, plus a tool panel's "Sections" list under it. Inner padding keeps the
+   ☰ handle and switch clear of the lifted card's edges while dragging. */
+.ms-rail-item { position: relative; border-top: 1px solid var(--ms-rail-line); border-radius: 14px; will-change: transform; }
+.ms-rail-item:first-child { border-top-color: transparent; }
+.ms-rail-row { display: flex; align-items: center; padding: 7px 8px 7px 6px; }
+.ms-rail-row .ms-panel-count { margin: 0 6px 0 4px; font-size: 10px; font-weight: 700; color: var(--accent); }
+.ms-rail-row .ms-panel-more { margin-right: 6px !important; }
+.ms-rail-item .ms-panel-sections { padding: 0 8px 8px 48px; }
+.ms-rail-list { position: relative; }
+.ms-rail-list.dragging { -webkit-user-select: none; user-select: none; cursor: grabbing; }
+.ms-rail-list.dragging .ms-rail-item { border-top-color: transparent; }
+/* The row being dragged: lifted onto a card with a soft shadow (studio-tools.js dragRow animates it). */
+.ms-rail-item.lifted { z-index: 5; background: var(--dk-card, #fff); border-top-color: transparent;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .38), 0 2px 8px rgba(0, 0, 0, .25), 0 0 0 1px rgba(255, 255, 255, .08); }
+html:not(.dark-mode) .ms-rail-item.lifted { box-shadow: 0 14px 30px rgba(40, 80, 140, .22), 0 0 0 1px #fff; }
+/* ☰ handle: quiet until hovered, grabbable, no fill. */
+.ms-dialog .ms-rail-mini.grip { background: transparent !important; border-color: transparent !important; box-shadow: none !important; cursor: grab; touch-action: none; opacity: .55; margin-right: 4px !important; transition: opacity .15s ease; }
+.ms-dialog .ms-rail-mini.grip:hover, .ms-dialog .ms-rail-mini.grip:focus, .ms-rail-item.lifted .ms-rail-mini.grip { opacity: 1; }
+.ms-rail-item.lifted .ms-rail-mini.grip { cursor: grabbing; }
+.ms-rail-row.off .ms-rail-row-icon, .ms-rail-row.off .ms-rail-row-name { opacity: .45; }
+.ms-rail-row-icon { flex: 0 0 26px; width: 26px; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-right: 8px; }
+.ms-rail-row-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ms-rail-row-name { flex: 1 1 auto; min-width: 0; font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ms-dialog .ms-rail-mini {
+  flex: 0 0 28px; width: 28px !important; height: 28px !important; min-height: 28px !important; padding: 0 !important; margin: 0 6px 0 0 !important;
+  border-radius: 9px !important; display: flex !important; align-items: center; justify-content: center; cursor: pointer;
+}
+.ms-dialog .ms-rail-mini svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ms-dialog .ms-rail-mini:disabled { opacity: .3; cursor: default; }
+html.dark-mode .ms-dialog .ms-rail-mini { background: var(--dk-raise) !important; border: 1px solid var(--dk-line-2) !important; color: var(--dk-text) !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05) !important; }
+html:not(.dark-mode) .ms-dialog .ms-rail-mini { background: rgba(255, 255, 255, .8) !important; border: 1px solid #fff !important; color: var(--text) !important; }
+.ms-dialog .ms-rail-mini.hero.active { background: var(--active-fill) !important; border-color: var(--ms-rim, rgba(255, 255, 255, .38)) !important; color: var(--ms-ink, #fff) !important; }
+.ms-dialog .ms-rail-row .toggle-control:disabled { opacity: .5; cursor: default; }
+
+/* ---------- Rail status and footer ---------- */
+/* Connection: just the dot (green = After Effects connected), tucked right under Settings; the text after it
+   and the "Comp · layers · properties · keys" line under the panel are gone, and the Studio fills that space. */
+html.ms-embedded .connection-pill { margin-top: 6px !important; height: 12px !important; min-height: 0 !important; padding: 0 !important; justify-content: center !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+html.ms-embedded .connection-pill #connection { display: none !important; }
+html.ms-embedded #context { display: none !important; }
+
+/* ---------- Tool panels inside the Studio ---------- */
+/* While a tool panel is open (the extension draws it over the content column), its rail button is the
+   selected one and the category buttons look unselected. */
+/* (Light and dark each get their own unselected look: the --dk-* colours exist in light mode too, so one
+   rule for both painted a white icon on the light button.) */
+html.dark-mode.ms-tool-open .tabs button.active:not(.ms-rail-panel) {
+  background: var(--dk-raise) !important; border-color: var(--dk-line-2) !important; color: var(--dk-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 2px 6px rgba(0, 0, 0, .25) !important;
+}
+html:not(.dark-mode).ms-tool-open .tabs button.active:not(.ms-rail-panel) {
+  background: var(--ms-rail-bg) !important; border-color: var(--ms-rail-border) !important; color: var(--text) !important;
+  box-shadow: var(--ms-rail-shadow) !important;
+}
+html.ms-tool-open .tabs button.active:not(.ms-rail-panel) svg, html.ms-tool-open .tabs button.active:not(.ms-rail-panel) svg * { color: inherit !important; stroke: currentColor !important; }
+/* The column's 1 px top highlight ran parallel to the tool panel card's top edge 8 px below it and read as a
+   doubled border at the top only; the bottom has no highlight, so drop it while a tool panel is open. */
+html.ms-tool-open .content-column { box-shadow: none !important; }
+/* The Studio's own toolbar and content stay drawn under the tool panel card, and their edges and shadows
+   showed in the gap above it as a second border. Hide them while a tool panel is open. */
+html.ms-tool-open .content-column > * { visibility: hidden !important; }
+.ms-rail-panel.active {
+  background: var(--active-fill) !important; border-color: var(--ms-rim, rgba(255, 255, 255, .38)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 4px 14px rgba(var(--ms-glow, 17, 126, 255), .24) !important;
+}
+
+/* ---------- Responsive panel ---------- */
+/* The preview is 600 × 320 (1.875 : 1). Its width also follows the panel's height, so in a short or wide
+   panel it shrinks (centred) instead of pushing every control below the fold. ~290 px is the toolbar,
+   preset strip, title and Apply bar around it. */
+html.ms-embedded .workspace-scroll .preview-card {
+  max-width: calc((100vh - 290px) * 1.875 + 20px); min-width: 150px; margin-left: auto !important; margin-right: auto !important;
+}
+html.ms-embedded .workspace-scroll .curve-card { max-width: calc((100vh - 250px) * 1.8 + 20px); min-width: 180px; margin-left: auto !important; margin-right: auto !important; }
+
+/* Wide panels: preview (or curve editor) on the left, controls on the right, so nothing hides below. */
+@media (min-width: 1000px) {
+  html.ms-embedded .workspace-scroll {
+    display: grid !important; grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr); grid-auto-flow: row dense;
+    grid-column-gap: 14px; column-gap: 14px; align-items: start; align-content: start;
+  }
+  html.ms-embedded .workspace-scroll > * { grid-column: 1 / -1; min-width: 0; }
+  html.ms-embedded .workspace-scroll > .preview-card, html.ms-embedded .workspace-scroll > .curve-card,
+  html.ms-embedded .workspace-scroll > .easing-tools { grid-column: 1; max-width: none; width: auto; margin-left: 0 !important; margin-right: 0 !important; }
+  html.ms-embedded .workspace-scroll > .parameters-card { grid-column: 2; grid-row: 2 / span 3; margin-top: 0 !important; }
+  html.ms-embedded .workspace-scroll > .ms-code, html.ms-embedded .workspace-scroll > .bake-options,
+  html.ms-embedded .workspace-scroll > .actions, html.ms-embedded .workspace-scroll > .replace { grid-column: 2; }
+}
+
+/* Very narrow docks (240–299 px): the Studio used to hide itself below 300 px; keep it usable with a slimmer
+   rail and tighter cards. Below 240 px its "make this panel wider" note still shows. */
+@media (min-width: 240px) and (max-width: 299px) {
+  html.ms-embedded, html.ms-embedded body { min-width: 0 !important; }
+  html.ms-embedded body > * { visibility: visible !important; }
+  html.ms-embedded body::after { display: none !important; content: none !important; }
+  html.ms-embedded .nav-bar { width: 46px !important; min-width: 46px !important; padding-left: 4px !important; padding-right: 4px !important; }
+  html.ms-embedded .nav-bar #tabs button, html.ms-embedded .ms-rail-panels button, html.ms-embedded .nav-bar .ms-rail-icon {
+    width: 36px !important; min-width: 36px !important; height: 36px !important; min-height: 36px !important; border-radius: 11px !important;
+  }
+  html.ms-embedded .toolbar > * { min-width: 0 !important; }
+  html.ms-embedded .toolbar button, html.ms-embedded .toolbar summary { padding-left: 4px !important; padding-right: 4px !important; font-size: 10.5px !important; letter-spacing: -.2px; }
+  html.ms-embedded .toolbar #favorites, html.ms-embedded .toolbar #library { flex: 0 0 30px !important; width: 30px !important; }
+  html.ms-embedded .workspace-scroll { overflow-x: hidden !important; }
+  html.ms-embedded #params .segmented-control > button, html.ms-embedded .style-choice-buttons > button { min-width: 0 !important; font-size: 11px !important; padding-left: 2px !important; padding-right: 2px !important; }
+  html.ms-embedded #params input[type="range"] { min-width: 0 !important; }
+  html.ms-embedded .content-column { padding: 4px !important; }
+  html.ms-embedded .content-column main > article .parameters-card { padding: 10px 8px 12px !important; }
+  html.ms-embedded .apply-row > .primary, html.ms-embedded .apply-row > #remove, html.ms-embedded .copy-paste-control > button { font-size: 10.5px !important; padding: 4px !important; }
+}
+@media (min-width: 240px) and (max-width: 279px) {
+  html.ms-embedded .toolbar { grid-template-columns: repeat(3, minmax(0, 1fr)) 26px 26px !important; }
+  html.ms-embedded .toolbar #favorites, html.ms-embedded .toolbar #library { flex: 0 0 26px !important; width: 26px !important; }
+  html.ms-embedded .toolbar button, html.ms-embedded .toolbar summary,
+  html.ms-embedded .toolbar #reverb-out, html.ms-embedded .toolbar #alive-button, html.ms-embedded .toolbar #fps-control > summary {
+    font-size: 9.5px !important; padding-left: 1px !important; padding-right: 1px !important; letter-spacing: -.3px !important;
+    min-width: 0 !important; width: 100% !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: clip !important;
+    justify-content: center !important; text-align: center !important;
+  }
+  html.ms-embedded .toolbar #reverb-out svg, html.ms-embedded .toolbar #alive-button svg, html.ms-embedded .toolbar #fps-control > summary svg { display: none !important; }
+}
+@media (max-width: 239px) {
+  html.ms-embedded body::after { content: "Make this panel a little wider to use MotionSaaS" !important; }
+}

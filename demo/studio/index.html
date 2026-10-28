@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MotionSaaS Studio</title>
+  <link rel="stylesheet" href="css/final-ui.css">
+  <link rel="stylesheet" href="css/warm-theme.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/fixes.css">
+  <link rel="stylesheet" href="css/polish.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="../css/studio-extra.css">
+
+</head>
+<body class="ms-studio">
+  <input id="property-select" type="hidden" value="">
+  <header class="app-header">
+    <div class="brand"><span class="brand-mark">M</span><div><strong>MotionSaaS <span>Studio</span></strong><small>Motion tools for After Effects</small></div></div>
+    <div class="slogan" aria-label="Better Motion, Happier Edits">Better<br>Motion<br>Happier<br>Edits <b>♡</b></div>
+    <div class="connection-pill"><i id="connection-dot"></i><small id="connection">Connecting…</small></div>
+  </header>
+
+  <div class="workspace">
+    <nav class="nav-bar" aria-label="Categories">
+      <div class="rail-brand" aria-hidden="true"><span>MS</span></div>
+      <div id="tabs" class="tabs"></div>
+      <div class="rail-spacer"></div>
+      <button id="nav-mode" type="button" class="nav-mode" aria-label="Use dark mode" title="Use dark mode" aria-pressed="false">◐</button>
+    </nav>
+
+    <div class="content-column">
+      <div class="toolbar">
+        <div class="alive-control" id="alive-control">
+          <button id="alive-button" type="button" class="soft-button alive-button" aria-expanded="false" title="Alive — Add soft follow-through"><span>Alive</span></button>
+          <section id="alive-popover" class="alive-popover" hidden="" aria-label="Alive controls">
+            <header><strong>Alive</strong><input type="checkbox" data-alive="enabled" checked="" hidden="" aria-hidden="true"><button type="button" data-alive-close="" aria-label="Close Alive">×</button></header>
+            <label title="How much the shape stretches with speed and squashes when it stops.">Squash &amp; Stretch <small class="alive-hint">How strongly the shape reacts to motion</small><span><input type="range" min="0" max="100" step="1" data-alive="amount"><output data-alive-value="amount"></output></span></label>
+            <label title="Low: firm and quick. High: soft body with a slower, bigger wobble.">Jelly <small class="alive-hint">Firm and quick ↔ soft and slow</small><span><input type="range" min="0" max="100" step="1" data-alive="softness"><output data-alive-value="softness"></output></span></label>
+            <label title="How fast the wobble dies out after the layer stops.">Settle <small class="alive-hint">Long wobble ↔ stops at once</small><span><input type="range" min="0" max="100" step="1" data-alive="damping"><output data-alive-value="damping"></output></span></label>
+            
+            <p class="alive-howto">Select the animated layer (not its keyframes) and press Apply. Works on shape layers with Position, Scale or Rotation animation.</p>
+            <output data-alive-status="" role="status"></output>
+            <footer><button type="button" data-alive-remove="">Remove Alive</button><button type="button" data-alive-repair="" hidden="">Repair</button><button type="button" data-alive-bake="" hidden="">Bake 2.0</button><button type="button" data-alive-apply="" class="primary">Apply</button></footer>
+          </section>
+        </div>
+        <details class="fps-control" id="fps-control"><summary title="Frame rate for selected layers">FPS</summary><div class="fps-popover"><header><strong>Layer FPS</strong><button type="button" id="fps-close" aria-label="Close FPS">×</button></header><label for="fps-range">Layer frame rate <output id="fps-value">12 fps</output></label><input id="fps-range" type="range" min="1" max="60" step="1" value="12" aria-label="Layer FPS"><div class="fps-actions"><button type="button" id="fps-reset">Reset</button><button type="button" id="fps-apply">Apply to layer</button></div></div></details>
+        <button id="favorites" class="soft-button" aria-pressed="false"><span class="button-icon">★</span><span>Favorites</span></button>
+        <button id="library" class="soft-button" aria-label="Center anchor point" title="Center anchor point"><span class="button-icon">⌾</span><span>Center anchor</span></button>
+      </div>
+
+      <main>
+        <aside class="preset-panel"><div class="panel-label">Curve presets</div><div id="presets" aria-label="Presets"></div></aside>
+        <article>
+          <div class="workspace-scroll">
+            <div class="title"><div><span class="eyebrow" id="category-label">Preset</span><h1 id="name"></h1></div><button id="favorite" class="icon-button" aria-label="Toggle favorite">☆</button></div>
+            <p id="description" hidden=""></p>
+            <div class="preview-card"><div class="preview"><canvas id="preview" width="600" height="320" aria-label="Animation preview"></canvas></div></div>
+            <section id="curve-editor" class="curve-card" hidden=""><div class="section-title"><span>Curve editor</span><small>Drag the blue handles</small></div><svg id="curve" viewBox="0 0 300 180" role="img" aria-label="Drag curve handles"><path id="curve-line"></path><line id="handle-a"></line><line id="handle-b"></line><ellipse id="point-a" data-curve-marker="5"></ellipse><ellipse id="point-b" data-curve-marker="5"></ellipse><text x="8" y="174">0.0</text><text x="8" y="102">0.5</text><text x="8" y="28">1.0</text><text x="20" y="178">0.0</text><text x="145" y="178">0.5</text><text x="278" y="178">1.0</text></svg></section>
+            <section id="easing-tools" class="easing-tools" hidden=""><div class="mini-preview"><div id="easing-motion" aria-label="Animated curve preview"><i id="easing-start"></i><i id="easing-end"></i><b id="easing-dot"></b></div><input id="mini-progress" type="range" min="0" max="100" value="0" aria-label="Preview progress"></div><div class="ease-transfer"><label>Paste mode<select id="ease-mode"><option value="both">Influence + Speed</option><option value="influence">Influence only</option><option value="speed">Speed only</option></select></label><label class="compact-check"><input id="ease-mirror" type="checkbox"> Mirror</label><button id="copy-ease" type="button">Copy Ease</button><button id="paste-ease" type="button">Paste Ease</button></div></section>
+            <section class="parameters-card"><div class="section-title"><span>Controls</span></div><form id="params"></form></section>
+            
+            <details class="bake-options" hidden=""><summary>Bake settings</summary><div><label>Range<select id="bake-range"><option value="work-area">Work area</option><option value="layer">Layer range</option><option value="selected">Selected keys</option></select></label><label>Quality<select id="bake-quality"><option value="balanced">Balanced</option><option value="precise">Precise</option><option value="draft">Draft</option></select></label><label>Tolerance %<input id="bake-tolerance" type="number" min="0.001" max="10" step="0.05" value="0.35"></label></div><small>Only MotionSaaS expressions are removed. Other expressions are preserved.</small></details>
+            <div class="actions" hidden=""><button id="copy-setup" class="soft-button"><span class="button-icon">⧉</span><span>Copy setup</span></button><button id="paste-setup" class="soft-button"><span class="button-icon">↳</span><span>Paste setup</span></button><button id="bake" class="soft-button"><span class="button-icon">✦</span><span>Bake 2.0</span></button><button id="diagnose" class="soft-button"><span class="button-icon">◇</span><span>Diagnose</span></button><button id="repair" class="soft-button"><span class="button-icon">↻</span><span>Repair safe issues</span></button><button id="remove" class="soft-button"><span class="button-icon">×</span><span>Remove current</span></button><button id="remove-all-text" class="soft-button"><span class="button-icon">×</span><span>Remove all Text</span></button></div>
+            <label class="replace" hidden=""><span class="switch"><input id="replace" type="checkbox"><i></i></span><span>Replace conflicts</span></label>
+          </div>
+          <div class="apply-row"><small id="apply-hint" hidden="">Select a layer in After Effects, then Apply.</small><button id="apply" type="button" class="primary">Apply</button></div><output id="status" role="status"></output>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <footer id="context">No active composition</footer>
+  <script src="shim.js"></script>
+  <script src="js/panel.js"></script>
+  <script src="../js/ms-tint.js"></script>
+  <script src="../js/ms-palette-core.js"></script>
+  <script src="studio-tools.js"></script>
+  <script src="legacy.js"></script>
+  <script src="../js/ms-motion.js"></script>
+
+
+</body></html>
