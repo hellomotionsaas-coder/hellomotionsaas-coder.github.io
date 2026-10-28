@@ -1,1 +1,0 @@
-(function(d,t){ t=d.createElement('script'); t.setAttribute('src','https://payhip.com/js/payhip.js?v=24u69015'); d.getElementsByTagName('head')[0].appendChild(t); t=d.createElement('script'); t.setAttribute('src','https://payhip.com/js/json2.js?v=24u69015'); d.getElementsByTagName('head')[0].appendChild(t);})(document);

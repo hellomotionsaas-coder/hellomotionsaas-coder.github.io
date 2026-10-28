@@ -75,9 +75,9 @@
      - Uses **8 carousel items** loading `images/c1.webp` through `images/c8.webp`.
      - Supports **Radial** and **Curved Line** 3D rotation modes with draggable SVG curve pins and rotation sliders (`data-rx`, `data-ry`).
 
-### 7. Discount Popup (`js/offer.js`)
-- Displays an email signup popup for a 15% discount code (`MOTION15`).
-- Uses `sessionStorage.getItem('ms_offer_shown_session')` so it appears **only once per browsing session**. It will NOT reappear on subsequent page visits unless the session is closed and reopened.
+### 7. Contact (`contact.html` + `js/contact.js`)
+- One email: hello.motionsaas@gmail.com. The form opens the visitor's email app with the message filled in (GitHub Pages can't receive form posts).
+- The old 15% discount popup (`js/offer.js`) was removed: it showed a code for a checkout that didn't exist, and the emails it collected were never received.
 
 ---
 

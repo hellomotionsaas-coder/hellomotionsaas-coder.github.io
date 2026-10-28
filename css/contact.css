@@ -34,6 +34,13 @@
 .cf textarea{resize:vertical;min-height:140px}
 .cf input:focus,.cf select:focus,.cf textarea:focus{outline:0;box-shadow:inset 0 0 0 1px var(--blue),0 0 0 4px rgba(10,132,255,.15)}
 .cbox__note{font-size:13px;color:var(--muted)}
+.cbox__err{font-size:13.5px;font-weight:600;color:#d70015}
+
+/* "Reporting a bug?" hint under the email card */
+.tip{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:14px 16px;border-radius:16px;background:rgba(10,132,255,.07);box-shadow:inset 0 0 0 1px rgba(10,132,255,.16);font-size:14.5px;color:var(--ink-2)}
+.tip strong,.tip b{color:var(--ink)}
+.tip__ic{flex:none;width:22px;height:22px;color:var(--blue);margin-top:1px}
+.tip__ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .cbox__note a{color:var(--blue)}
 .cbox .btn{justify-self:start}
 
@@ -43,4 +50,10 @@
   .cbox__row{grid-template-columns:1fr}
   .cbox .btn{justify-self:stretch}
   .channel{padding:14px}
+  .channel__go{display:none}
+}
+@media (max-width:420px){
+  /* keep the email address on one line on phones */
+  .channel__txt strong{font-size:15px;overflow-wrap:normal;white-space:nowrap}
+  .channel__ic{width:42px;height:42px}
 }

@@ -5,22 +5,26 @@
   <script>document.documentElement.classList.remove('no-js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Contact — MotionSaas | Motion Saas</title>
-  <meta name="description" content="Questions about MotionSaas, your order or an update? Reach us by email, on social or with the contact form.">
+  <meta name="description" content="Questions, bugs or ideas for MotionSaas? Email hello.motionsaas@gmail.com. We usually reply within a day.">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" href="images/favicon.png" type="image/png" sizes="64x64">
   <link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="canonical" href="https://hellomotionsaas-coder.github.io/contact.html">
+  <meta property="og:url" content="https://hellomotionsaas-coder.github.io/contact.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MotionSaas">
   <meta property="og:title" content="Contact — MotionSaas | Motion Saas">
   <meta property="og:description" content="Reach MotionSaas support by email or with the contact form.">
-  <meta property="og:image" content="images/panel-hero.jpg">
+  <meta property="og:image" content="https://hellomotionsaas-coder.github.io/images/studio-easing.png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="600">
+  <meta name="twitter:image" content="https://hellomotionsaas-coder.github.io/images/studio-easing.png">
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/contact.css">
-  <link rel="stylesheet" href="css/offer.css">
-  <script src="js/products.js" defer></script>
   <script src="js/site.js" defer></script>
-    <script src="js/offer.js" defer></script>
+  <script src="js/contact.js" defer></script>
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 <header class="nav" id="top">
@@ -39,52 +43,45 @@
   <section class="contact__head">
     <div class="container">
       <h1>Contact</h1>
-      <p>Questions about MotionSaas, your order or an update? Pick the way that suits you. We usually reply within a day.</p>
+      <p>Questions, bugs or ideas for MotionSaas? Email us. We usually reply within a day.</p>
     </div>
   </section>
 
   <section class="container container--narrow">
     <div class="channels">
-      <a class="channel" href="mailto:support@motionsaas.com">
+      <a class="channel" href="mailto:hello.motionsaas@gmail.com?subject=MotionSaas">
         <span class="channel__ic channel__ic--mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
         <span class="channel__txt">
-          <span class="channel__label">Direct Support Email</span>
-          <strong>support@motionsaas.com</strong>
-          <span class="channel__hint">Fastest way to reach our engineering team</span>
-        </span>
-        <span class="channel__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
-
-      <a class="channel" href="mailto:help@motionsaas.com">
-        <span class="channel__ic channel__ic--ig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" class="dot"/></svg></span>
-        <span class="channel__txt">
-          <span class="channel__label">Orders &amp; Licenses</span>
-          <strong>help@motionsaas.com</strong>
-          <span class="channel__hint">Instant license recovery and receipt help</span>
+          <span class="channel__label">Email</span>
+          <strong>hello.motionsaas@gmail.com</strong>
+          <span class="channel__hint">Help, bug reports, feature requests</span>
         </span>
         <span class="channel__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
 
-    <p class="contact__or"><span>or send a message here</span></p>
+    <div class="tip">
+      <span class="tip__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></span>
+      <p><strong>Reporting a bug?</strong> In the panel, open Settings → About and click <b>Copy diagnostics</b>, then paste it into your message. It tells us your After Effects version and the last errors, so we can fix it much faster.</p>
+    </div>
 
-    <form action="thanks.html" class="cbox" method="GET" name="contact">
-      <div class="cbox__row">
-        <label class="cf"><span>Name</span><input type="text" name="name" autocomplete="name" required maxlength="80" placeholder="Your name"></label>
-        <label class="cf"><span>Email</span><input type="email" name="email" autocomplete="email" required maxlength="120" placeholder="your@email.com"></label>
-      </div>
+    <p class="contact__or"><span>or write your message here</span></p>
+
+    <form class="cbox" name="contact" data-mail-form="hello.motionsaas@gmail.com" novalidate>
       <label class="cf"><span>Topic</span>
         <select name="topic">
-          <option>Question about MotionSaas tool</option>
-          <option>My order / download</option>
-          <option>Updates &amp; Compatibility</option>
+          <option>Question about MotionSaas</option>
+          <option>Bug report</option>
+          <option>Install or update problem</option>
           <option>Feature request</option>
           <option>Something else</option>
         </select>
       </label>
-      <label class="cf"><span>Message</span><textarea name="message" rows="6" required maxlength="4000" placeholder="How can we help?"></textarea></label>
-      <p class="cbox__note">By sending this form you agree that we use your details to answer you. See our <a href="privacy.html">Privacy Policy</a>.</p>
-      <button type="submit" class="btn btn--primary btn--lg">Send message</button>
+      <label class="cf"><span>Message</span><textarea name="message" rows="7" required maxlength="4000" placeholder="How can we help? For bugs: what you clicked, what happened, and your diagnostics."></textarea></label>
+      <p class="cbox__err" data-mail-err hidden>Please write a message first.</p>
+      <p class="cbox__note">This opens your email app with the message ready to send. Nothing is sent from this page. See our <a href="privacy.html">Privacy Policy</a>.</p>
+      <button type="submit" class="btn btn--primary btn--lg">Open in my email app</button>
+      <p class="cbox__note" data-mail-fallback hidden>Nothing opened? Copy your message and send it to <a href="mailto:hello.motionsaas@gmail.com">hello.motionsaas@gmail.com</a>.</p>
     </form>
   </section>
 </main>
@@ -97,9 +94,9 @@
         <span class="brand__name">Motion<span class="accent">Saas</span></span>
       </a>
       <p class="footer__small">Tools for faster editing.</p>
-      <a class="social" href="mailto:support@motionsaas.com" aria-label="Email MotionSaas support">
+      <a class="social" href="mailto:hello.motionsaas@gmail.com" aria-label="Email MotionSaas support">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
-        <span>support@motionsaas.com</span>
+        <span>hello.motionsaas@gmail.com</span>
       </a>
     </div>
     <nav class="footer__links" aria-label="Footer">
@@ -112,7 +109,7 @@
     </nav>
   </div>
   <div class="container footer__legal">
-    <p>© <span data-year="">2026</span> MotionSaas. 100% Free &amp; Open Source.</p>
+    <p>© <span data-year="">2026</span> MotionSaas. Free during early access.</p>
     <p>Adobe and After Effects are trademarks of Adobe Inc. MotionSaas is not affiliated with or endorsed by Adobe.</p>
   </div>
 </footer>

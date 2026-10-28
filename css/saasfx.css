@@ -256,6 +256,15 @@
 .spec{background:var(--surface);border-radius:var(--radius-sm);padding:24px;box-shadow:var(--shadow)}
 .spec__k{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
 .spec__v{font-size:18px;font-weight:600;letter-spacing:-.01em}
+/* Get started: 3 install steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:none}
+.step{position:relative;background:var(--surface);border-radius:var(--radius-sm);padding:28px 24px 26px;box-shadow:var(--shadow)}
+.step__n{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;margin-bottom:16px;font-weight:800;font-size:16px;color:#fff;background:linear-gradient(180deg,#2a8dff,#0a6cf0);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 14px -6px rgba(10,108,240,.7)}
+.step h3{font-size:19px;letter-spacing:-.01em;margin-bottom:8px}
+.step p{color:var(--ink-2);font-size:15.5px}
+.step b{color:var(--ink);font-weight:600}
+.steps__cta{text-align:center;margin-top:40px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
 .faq{display:grid;gap:12px}
 .faq details{background:var(--bg);border-radius:var(--radius-sm);padding:0 22px}
 .faq summary{list-style:none;cursor:pointer;padding:20px 32px 20px 0;font-weight:600;font-size:18px;position:relative}

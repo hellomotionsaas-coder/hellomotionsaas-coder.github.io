@@ -261,7 +261,7 @@
         '</form>' +
         '<div class="site-modal__direct">' +
           '<span>Or email us directly: </span>' +
-          '<a href="mailto:support@motionsaas.com">support@motionsaas.com</a>' +
+          '<a href="mailto:hello.motionsaas@gmail.com">hello.motionsaas@gmail.com</a>' +
         '</div>' +
       '</div>';
     document.body.appendChild(contactModal);
@@ -323,14 +323,14 @@
           '<p class="site-modal__sub">Last updated: 2026. Your privacy is respected and protected.</p>' +
         '</div>' +
         '<div class="site-modal__content legal-copy">' +
-          '<h3>1. Payments & Personal Information</h3>' +
-          '<p>All purchases of MotionSaas are processed securely by <strong>Payhip</strong>. Your sensitive payment details (credit cards, PayPal credentials) are never stored or seen by our servers.</p>' +
-          '<h3>2. Local Storage</h3>' +
-          '<p>We use standard browser localStorage to remember your shopping cart items and promotional discount state. This data stays on your device and is not shared with third parties.</p>' +
-          '<h3>3. Analytics & Communications</h3>' +
-          '<p>If you subscribe for promotional offers, we only use your email to provide discount codes and essential product updates. You can unsubscribe at any time with one click.</p>' +
+          '<h3>1. Downloads</h3>' +
+          '<p>MotionSaas is a free download during early access. This site takes no payments and asks for no account.</p>' +
+          '<h3>2. Cookies &amp; tracking</h3>' +
+          '<p>This site stores nothing about you. It sets no cookies and runs no trackers.</p>' +
+          '<h3>3. Email</h3>' +
+          '<p>If you email us, we use your address only to answer you.</p>' +
           '<h3>4. Contact</h3>' +
-          '<p>For privacy inquiries, contact us at <a href="mailto:support@motionsaas.com">support@motionsaas.com</a>.</p>' +
+          '<p>For privacy inquiries, contact us at <a href="mailto:hello.motionsaas@gmail.com">hello.motionsaas@gmail.com</a>.</p>' +
         '</div>' +
         '<button class="btn btn--ghost btn--block" type="button" data-privacy-close>Close</button>' +
       '</div>';
