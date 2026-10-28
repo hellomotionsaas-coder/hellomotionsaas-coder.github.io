@@ -74,6 +74,7 @@ For the complete detailed documentation, see [README.md](./README.md).
 Whenever updating `index.html` or `contact.html`:
 1. Keep `contact/index.html` in sync with `contact.html`. (`products/*/index.html` are just redirects to the homepage — nothing to sync.)
 2. Deploy to GitHub Pages: the live site is the `main` branch of the public repo `hellomotionsaas-coder/hellomotionsaas-coder.github.io`, cloned at `../site-pages`. This folder is NOT a git repo (it sits untracked inside the private extension repo).
+   - First stamp the CSS/JS links: `node scripts/site-stamp.js` (main repo). GitHub Pages caches CSS/JS for 10 minutes, so without a new `?v=` returning visitors see the new HTML with old styles and new sections look broken.
    - Copy without the extension source or the venmofx copy (both must never be public):
      `robocopy 'Dont Delete This\venmo website' 'Dont Delete This\site-pages' /MIR /XD extension saveweb2zip-com-venmofx-com .git`
      (`/MIR` also removes files you deleted here; the `/XD` folders are never copied or removed.)
